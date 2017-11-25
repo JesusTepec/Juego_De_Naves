@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #7E6658;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+  background-color: #191621;
+}
+
+.titulo {
+  color: #FF9F66;
+  font-family: 'Press Start 2P', Arial;
+  font-size: 45px;
+  text-align: center;
+  text-shadow: 10px 0px 20px #403231;
+}

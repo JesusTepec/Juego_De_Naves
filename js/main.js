@@ -9,8 +9,8 @@ var Enemigos = [];
 var Disparos = [];
 var DisparosEnemigos = [];
 var images = [
-	{id: "fondo", src: 'images/bg5.jpg'}, 
-	{id: "nave", src: 'images/SpaceShipSmall.png'}, 
+	{id: "fondo", src: 'images/bg5.jpg'},
+	{id: "nave", src: 'images/SpaceShipSmall.png'},
 	{id: "enemigo", src: 'images/alien2.png'},
 	{id: "disparo", src: "images/64_laser_red.png"},
 	{id: "enemigoHit", src: "images/64_boom.png"},
@@ -20,11 +20,12 @@ var soundDisparo, soundFondo, soundExplosion;
 var preloader;
 
 function loadMedia(){
-	preloader = new createjs.LoadQueue();	
+	preloader = new createjs.LoadQueue();
 	preloader.addEventListener("progress", progresoCarga);
 	preloader.loadManifest(images);
 	preloader.on("complete", start, this);
 }
+
 function start(){
 	if(preloader.progress == 1){
 		fondo = preloader.getResult("fondo");
@@ -43,9 +44,11 @@ function start(){
 		var interval = window.setInterval(frameLoop, 1000/55);
 	}
 }
+
 function progresoCarga(e){
 	console.log(parseInt(e.loaded * 100));
 }
+
 function agregarEventosTeclado(){
 	agregarEvento(document, "keydown", function(e){
 		Teclado[e.keyCode] = true;
@@ -140,7 +143,7 @@ function dibujarEnemigos(){
 			ctx.drawImage(enemigoImage, enemigo.x, enemigo.y, enemigo.width, enemigo.height);
 		}
 		if(enemigo.estado == "MUERTO"){
-			
+
 		}
 		if(enemigo.estado == "DISPARADO"){
 			ctx.drawImage(enemigoHit, enemigo.x, enemigo.y, enemigo.width, enemigo.height);
@@ -171,10 +174,10 @@ function actualizaEnemigos(){
 	if(Juego.estado == "INICIANDO"){
 		for (var i = 0; i < 10; i++) {
 			Enemigos.push({
-				x: 10 + (i * 50), 
-				y: 10, 
-				width:40, 
-				height: 40, 
+				x: 10 + (i * 50),
+				y: 10,
+				width:40,
+				height: 40,
 				estado: "VIVO",
 				contador: 0
 			});
@@ -208,6 +211,7 @@ function actualizaEnemigos(){
 		}
 	});
 }
+
 function dibujaTexto(){
 	if(textoRespuesta.contador == -1) return;
 	var alpha = textoRespuesta.contador / 50.0;
@@ -226,6 +230,7 @@ function dibujaTexto(){
 		ctx.fillText(textoRespuesta.subtitulo, 190, 250);
 	}
 }
+
 function actualizarEstadoJuego(){
 	if(Juego.estado == "JUGANDO" && Enemigos.length == 0){
 		Juego.estado = "VICTORIA";
@@ -278,7 +283,7 @@ function verificaColision(){
 	for(var i in DisparosEnemigos){
 		var disparo = DisparosEnemigos[i];
 		if(colision(disparo, Nave)){
-			Nave.estado = 'DISPARADO';	
+			Nave.estado = 'DISPARADO';
 		}
 	}
 }
@@ -310,8 +315,6 @@ function frameLoop(){
 	dibujaTexto();
 	dibujaNave();
 }
-
-
 
 window.addEventListener('load', init);
 function init(){
